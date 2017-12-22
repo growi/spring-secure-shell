@@ -5,16 +5,10 @@ package de.growi.spring.shell.secure;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Objects;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
 
 import org.apache.sshd.common.RuntimeSshException;
 import org.apache.sshd.common.util.GenericUtils;
-import org.apache.sshd.common.util.ValidateUtils;
-import org.apache.sshd.common.util.io.IoUtils;
 import org.apache.sshd.common.util.logging.AbstractLoggingBean;
-import org.apache.sshd.common.util.threads.ThreadUtils;
 import org.apache.sshd.server.Command;
 import org.apache.sshd.server.Environment;
 import org.apache.sshd.server.ExitCallback;
@@ -22,8 +16,8 @@ import org.apache.sshd.server.SessionAware;
 import org.apache.sshd.server.session.ServerSession;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
-import org.springframework.shell.InputProvider;
 import org.springframework.shell.Shell;
+import org.springframework.shell.TerminalAwareInputProvider;
 
 public class JLineTerminalWrapper extends AbstractLoggingBean implements Command, SessionAware {
 
@@ -73,7 +67,7 @@ public class JLineTerminalWrapper extends AbstractLoggingBean implements Command
     public synchronized void start(Environment env) throws IOException {
     	this.log.info("start");
     	term = TerminalBuilder.builder().streams(in, out).type("Secure Shell").jna(false).jansi(false).build();
-    	InputProvider ip = inputProviderFactory.create(term, shell);
+    	TerminalAwareInputProvider ip = inputProviderFactory.create(term, shell);
     	new Thread(new Runnable() {
 			@Override
 			public void run() {
