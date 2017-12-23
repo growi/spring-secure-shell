@@ -34,27 +34,26 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
- 		
+
 		<dependency>
 			<groupId>org.springframework.shell</groupId>
 			<artifactId>spring-shell-starter</artifactId>
 			<version>2.0.0.M2</version>
-		</dependency> 
-
-	<!-- 	
-		<dependency>
-			<groupId>org.jline</groupId>
-			<artifactId>jline</artifactId>
-			<version>3.4.0</version>
 		</dependency>
-		-->
+
+		<!-- <dependency> <groupId>org.jline</groupId> <artifactId>jline</artifactId> 
+			<version>3.4.0</version> </dependency> -->
 
 		<dependency>
 			<groupId>org.apache.sshd</groupId>
 			<artifactId>sshd-core</artifactId>
 			<version>1.6.0</version>
 		</dependency>
-		 
+		<dependency>
+			<groupId>de.growi.springframework.shell.extension</groupId>
+			<artifactId>spring-shell-multi-terminal-extension</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -26,11 +26,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.shell.MultiTerminalShell;
 import org.springframework.shell.ResultHandler;
 import org.springframework.shell.Shell;
 import org.springframework.shell.result.TerminalAwareResultHandler;
 import org.springframework.stereotype.Component;
+
+import de.growi.springframework.shell.extension.MultiTerminalShell;
 
 @Component
 public class SshdConfiguration {

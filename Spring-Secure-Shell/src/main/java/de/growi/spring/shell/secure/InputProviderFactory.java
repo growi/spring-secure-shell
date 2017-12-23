@@ -21,7 +21,7 @@ import org.springframework.shell.ExitRequest;
 import org.springframework.shell.Input;
 import org.springframework.shell.InputProvider;
 import org.springframework.shell.Shell;
-import org.springframework.shell.TerminalBackedInputProvider;
+import de.growi.springframework.shell.extension.TerminalBackedInputProvider;
 import org.springframework.shell.jline.PromptProvider;
 import org.springframework.shell.jline.JLineShellAutoConfiguration.CompleterAdapter;
 import org.springframework.stereotype.Component;

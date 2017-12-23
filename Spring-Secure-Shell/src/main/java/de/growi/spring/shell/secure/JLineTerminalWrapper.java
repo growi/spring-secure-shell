@@ -16,9 +16,9 @@ import org.apache.sshd.server.SessionAware;
 import org.apache.sshd.server.session.ServerSession;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
-import org.springframework.shell.MultiTerminalShell;
-import org.springframework.shell.Shell;
-import org.springframework.shell.TerminalBackedInputProvider;
+
+import de.growi.springframework.shell.extension.MultiTerminalShell;
+import de.growi.springframework.shell.extension.TerminalBackedInputProvider;
 
 public class JLineTerminalWrapper extends AbstractLoggingBean implements Command, SessionAware {
 
