@@ -21,7 +21,7 @@ import org.springframework.shell.ExitRequest;
 import org.springframework.shell.Input;
 import org.springframework.shell.InputProvider;
 import org.springframework.shell.Shell;
-import org.springframework.shell.TerminalAwareInputProvider;
+import org.springframework.shell.TerminalBackedInputProvider;
 import org.springframework.shell.jline.PromptProvider;
 import org.springframework.shell.jline.JLineShellAutoConfiguration.CompleterAdapter;
 import org.springframework.stereotype.Component;
@@ -38,7 +38,7 @@ public class InputProviderFactory {
 
 	public PromptProvider promptProvider;
 
-	public TerminalAwareInputProvider create(Terminal terminal, Shell shell) throws IOException {
+	public TerminalBackedInputProvider create(Terminal terminal, Shell shell) throws IOException {
 		return new SshInputProvider(terminal, shell);
 	}
 
@@ -81,7 +81,7 @@ public class InputProviderFactory {
 		return words;
 	}
 
-	public class SshInputProvider implements TerminalAwareInputProvider {
+	public class SshInputProvider implements TerminalBackedInputProvider {
 
 		private Terminal terminal;
 		private LineReader lineReader;

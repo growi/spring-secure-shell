@@ -16,19 +16,20 @@ import org.apache.sshd.server.SessionAware;
 import org.apache.sshd.server.session.ServerSession;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
+import org.springframework.shell.MultiTerminalShell;
 import org.springframework.shell.Shell;
-import org.springframework.shell.TerminalAwareInputProvider;
+import org.springframework.shell.TerminalBackedInputProvider;
 
 public class JLineTerminalWrapper extends AbstractLoggingBean implements Command, SessionAware {
 
-    private Shell shell;
+    private MultiTerminalShell shell;
     private InputProviderFactory inputProviderFactory;
     private Terminal term;
     private InputStream in;
     private OutputStream out;
     private OutputStream err;
 
-    public JLineTerminalWrapper(Shell shell, InputProviderFactory inputProviderFactory) {
+    public JLineTerminalWrapper(MultiTerminalShell shell, InputProviderFactory inputProviderFactory) {
     	this.shell = shell;
     	this.inputProviderFactory = inputProviderFactory;
     }
@@ -67,18 +68,9 @@ public class JLineTerminalWrapper extends AbstractLoggingBean implements Command
     public synchronized void start(Environment env) throws IOException {
     	this.log.info("start");
     	term = TerminalBuilder.builder().streams(in, out).type("Secure Shell").jna(false).jansi(false).build();
-    	TerminalAwareInputProvider ip = inputProviderFactory.create(term, shell);
-    	new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					shell.run(ip);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}).start();
+    	TerminalBackedInputProvider inputProvider = inputProviderFactory.create(term, shell);
+    	
+		shell.connectTerminal(inputProvider);
     }
 
     @Override
